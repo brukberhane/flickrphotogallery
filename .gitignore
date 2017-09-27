@@ -1,0 +1,81 @@
+*.iml
+
+### Android ###
+*.apk
+*.ap_
+
+# Files for the Dalvik VM
+*.dex
+
+# Generated files
+bin/
+gen/
+
+# Gradle files
+.gradle
+build/
+
+# Local configuration file (sdk, path, etc...)
+/local.properties
+
+# Log files
+*.log
+
+# Android Studio Navigation Editor temp files
+.navigation/
+
+## Android studio tests
+app/src/androidTest/
+app/src/test/
+
+### Android Patch ###
+gen-external-apklibs
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+### Windows ###
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config gile
+Desktop.ini
+
+# Recycle bin used on file shares
+$RECYCLE.BIN/
+
+# Windows installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+## IntelliJ
+*.iml
+.idea/
+.idea_modules/
+
+### Java ###
+# Mobile tools for java
+.mtj.tmp/
+
+# Package files #
+*.jar
+*.war
+*.ear
+
+.DS_Store
+/captures
+.externalNativeBuild
