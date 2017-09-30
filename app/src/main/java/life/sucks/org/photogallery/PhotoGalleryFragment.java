@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.ArrayAdapter;
+import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,6 +32,9 @@ public class PhotoGalleryFragment extends Fragment {
     private RecyclerView mPhotoRecyclerView;
     private List<GalleryItem> mItems = new ArrayList<>();
     private ThumbnailDownloader<PhotoHolder> mThumbnailDownloader;
+    //TODO:  test var:
+    private int mPage = 0;
+    private boolean loading = false;
 
     public static PhotoGalleryFragment newInstance() {
         return new PhotoGalleryFragment();
@@ -187,4 +192,75 @@ public class PhotoGalleryFragment extends Fragment {
         mThumbnailDownloader.quit();
         Log.i(TAG, "Background thread destroyed");
     }
+
+    //TODO: Second try at implementing caching
+//    private void loadData(){
+//        if (loading)return;
+//        loading = true;
+//        mPage++;
+//        new FetchItemsTask().execute();
+//    }
+//
+//    private class GalleryItemAdapter extends ArrayAdapter<GalleryItem>{
+//        public GalleryItemAdapter(ArrayList<GalleryItem> items){
+//            super(getActivity(), 0, items);
+//        }
+//
+//        @Override
+//        public View getView(int position, View convertView, ViewGroup parent){
+//            if (convertView == null){
+//                convertView = getActivity().getLayoutInflater()
+//                        .inflate(R.layout.gallery_item, parent, false);
+//            }
+//            ImageView imageView = (ImageView)convertView.findViewById(
+//                    R.id.fragment_photo_gallery_image_view
+//                    );
+//        }TODO: this was a fail too...
+//    }
+
+
+    //TODO: This is a test implementation of caching. it prally won't work
+    /*private class GalleryItemAdapter extends ArrayAdapter<GalleryItem>{
+
+        public GalleryItemAdapter(ArrayList<GalleryItem> items){
+            super(getActivity(), 0, items);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent){
+            if (convertView == null){
+                convertView = getActivity().getLayoutInflater().inflate(
+                        R.layout.gallery_item, parent, false
+                );
+            }
+
+            ImageView imageView = (ImageView) convertView
+                    .findViewById(R.id.fragment_photo_gallery_image_view);
+            imageView.setImageResource(R.drawable.bill_up_close);
+            GalleryItem item = getItem(position);
+
+            Bitmap bitmap =
+                    SingletonLruCache.getBitmapFromMemoryCache(item.getUrl());
+
+            if (bitmap == null){
+
+            } else {
+                if (isVisible()){
+                    imageView.setImageBitmap(bitmap);
+                }
+            }
+
+            for (int i = position-10; i <=position+10; i++){
+                if (i >= 0 && i < mItems.size()){
+                    String url = mItems.get(i).getUrl();
+                    if (SingletonLruCache.getBitmapFromMemoryCache(url) == null){
+
+                    }
+                }
+            }
+        }
+
+    }*/
+    //Well that was a fail...
+
 }
